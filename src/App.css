@@ -1,0 +1,86 @@
+form {
+    fieldset {
+        margin-bottom: 1em;
+
+        @media (min-width: 768px) {
+            display: grid;
+            gap: 0.5em 1em;
+            grid-template-columns: repeat(2, min-content);
+        }
+    }
+
+    input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+        border-radius: 5px;
+        border: 1px #ccc solid;
+        padding: 0.25em 0.5em;
+        font-size: 16px;
+        display: block;
+        margin-bottom: 1em;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 768px) {
+            width: auto;
+            min-width: 40ch;
+            margin-bottom: 0;
+        }
+    }
+
+    input:user-invalid {
+        background-color: #fcd4da;
+        border-color: red;
+    }
+
+    /* input:user-valid {
+        background-color: #d4fcd4;
+    } */
+
+    label {
+        padding: 0.25em 0;
+        display: block;
+    }
+
+    label.required::after {
+        content: '*';
+        margin-left: 0.25em;
+    }
+}
+
+/****** minimal theme ********/
+.theme-minimal {
+    font-family: arial, veranda, sans-serif;
+    font-size: 16px;
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #eee;
+    width: 100%;
+    box-sizing: border-box;
+
+    @media (min-width: 768px) {
+        width: auto;
+        display: inline-block;
+    }
+
+    fieldset {
+        border: 0;
+        padding: 0;
+
+        legend {
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 1em;
+        }
+    }
+
+    button {
+        padding: 0.5em 1em;
+        font-size: inherit;
+        background: lightskyblue;
+        border: 0;
+        border-radius: 0.5em;
+    }
+}

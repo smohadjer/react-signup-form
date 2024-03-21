@@ -12,15 +12,22 @@
                 <fieldset>
                     <legend>Signup Form</legend>
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" pattern="\w{3,20}" placeholder="3 to 20 characters">
-
+                    <div>
+                        <input type="text" id="name" name="name"  placeholder="Enter your first name">
+                        <span class="error">Name should be at least 3 characters and at most 20 characters long.</span>
+                    </div>
                     <label class="required" for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Valid email address" required>
-
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Enter valid email address" required>
+                        <span class="error">The entry is not a valid email address.</span>
+                    </div>
                     <label class="required" for="password">Password:</label>
-                    <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="password" name="password" placeholder="Minimum eight characters, at least one uppercase letter, one number and one special character" title="Minimum eight characters, at least one uppercase letter, one number and one special character:" required>
+                    <div>
+                        <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="password" name="password" placeholder="Use a strong password" required>
+                        <span class="error">Password should have minimum 8 characters, at least one uppercase letter, one number and one of these special characters: @ $ ! % * ? &</span>
+                    </div>
                 </fieldset>
-                <button>Signup</button>
+                <button>Submit</button>
             </form>
         </noscript>
         <div id="root"></div>

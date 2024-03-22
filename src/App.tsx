@@ -1,6 +1,6 @@
 import { Field } from './Field';
-import formFields from './form.json'
-import './App.css'
+import formFields from './form.json';
+import './App.css';
 
 export default function App() {
   return (

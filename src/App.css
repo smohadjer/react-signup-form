@@ -32,6 +32,8 @@ form {
         background-color: #fcd4da;
         border-color: #c70000;
 
+
+        + div + .error,
         + .error {
             display: block;
             padding-top: 0.25em;
@@ -40,6 +42,17 @@ form {
             @media (min-width: 768px) {
                 padding-bottom: 0.5em;
             }
+        }
+    }
+
+    .password-checker {
+        display: flex;
+        margin: 0.25em 0;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            cursor: pointer;
         }
     }
 

@@ -8,13 +8,14 @@
     </head>
     <body>
         <noscript>
+            <p>JavaScript is disabled!</p>
             <form class="theme-minimal" method="post" action="api/signup">
                 <fieldset>
                     <legend>Signup Form</legend>
                     <label for="name">Name:</label>
                     <div>
-                        <input type="text" id="name" name="name"  placeholder="Enter your first name">
-                        <span class="error">Name should be at least 3 characters and at most 20 characters long.</span>
+                        <input type="text" id="name" name="name" pattern="\w{3,30}" placeholder="Enter your first name">
+                        <span class="error">Name should contain only alphanumeric characters and be at least 3 characters and at most 30 characters long.</span>
                     </div>
                     <label class="required" for="email">Email:</label>
                     <div>

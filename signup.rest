@@ -1,0 +1,15 @@
+POST http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    "name": "Sam",
+    "email": "sam@teat.com",
+    "password": "blah"
+}
+
+###
+
+POST http://localhost:3000/api/signup
+Content-Type: application/x-www-form-urlencoded
+
+name=Sam&email=sam@test.com&password=blah

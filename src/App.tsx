@@ -1,9 +1,17 @@
+import { Field } from './Field';
+import formFields from './form.json'
 import './App.css'
 
-function App() {
+export default function App() {
   return (
-      <h1>Vite + React</h1>
+    <form className="theme-minimal" method="post" action="api/signup">
+        <fieldset>
+            <legend>Signup Form</legend>
+            {formFields.map(item =>
+                <Field key={item.id} {...item} />
+            )}
+        </fieldset>
+        <button>Submit</button>
+    </form>
   )
 }
-
-export default App

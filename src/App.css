@@ -45,17 +45,6 @@ form {
         }
     }
 
-    .password-checker {
-        display: flex;
-        margin: 0.25em 0;
-        justify-content: space-between;
-        align-items: center;
-
-        img {
-            cursor: pointer;
-        }
-    }
-
     .error {
         display: none;
     }
@@ -68,54 +57,5 @@ form {
             content: '*';
             margin-left: 0.25em;
         }
-    }
-}
-
-/****** minimal theme ********/
-.theme-minimal {
-    font-family: arial, veranda, sans-serif;
-    font-size: 16px;
-    padding: 1em;
-    border-radius: 0.25em;
-    background: #eee;
-    width: 100%;
-    box-sizing: border-box;
-
-    @media (min-width: 768px) {
-        width: auto;
-        display: inline-block;
-    }
-
-    fieldset {
-        border: 0;
-        padding: 0;
-
-        legend {
-            font-weight: bold;
-            font-size: 24px;
-            margin-bottom: 1em;
-        }
-
-        > div {
-            margin-bottom: 1em;
-
-            @media (min-width: 768px) {
-                margin-bottom: 0;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    button {
-        padding: 0.5em 1em;
-        font-size: inherit;
-        background: lightskyblue;
-        background: #333;
-        color: white;
-        border: 0;
-        border-radius: 0.25em;
     }
 }

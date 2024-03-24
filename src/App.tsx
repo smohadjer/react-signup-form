@@ -1,17 +1,20 @@
-import { Field } from './Field';
+import { FormField } from './component/FormField';
 import formFields from './form.json';
 import './App.css';
+import './theme.css';
 
 export default function App() {
   return (
-    <form className="theme-minimal" method="post" action="api/signup">
-        <fieldset>
-            <legend>Signup Form</legend>
-            {formFields.map(item =>
-                <Field key={item.id} {...item} />
-            )}
-        </fieldset>
-        <button>Submit</button>
-    </form>
+    <>
+        <h1>Signup Form</h1>
+        <form className="theme-minimal" method="post" action="api/signup">
+            <fieldset>
+                {formFields.map(item =>
+                    <FormField key={item.id} {...item} />
+                )}
+            </fieldset>
+            <button type="submit">Submit</button>
+        </form>
+    </>
   )
 }

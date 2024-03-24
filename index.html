@@ -8,7 +8,7 @@
     </head>
     <body>
         <noscript>
-            <p>JavaScript is disabled!</p>
+            <p style="color: red;">JavaScript is disabled!</p>
             <form class="theme-minimal" method="post" action="api/signup">
                 <fieldset>
                     <legend>Signup Form</legend>
@@ -24,14 +24,16 @@
                     </div>
                     <label class="required" for="password">Password:</label>
                     <div>
-                        <input type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="password" name="password" placeholder="Use a strong password" required>
-                        <span class="error">Password should have minimum 8 characters, at least one uppercase letter, one number and one of these special characters: @ $ ! % * ? &</span>
+                        <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])[^\s]{8,}$" id="password" name="password" placeholder="Use a strong password" required>
+                        <span class="error">Password should have minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</span>
                     </div>
                 </fieldset>
                 <button>Submit</button>
             </form>
         </noscript>
         <div id="root"></div>
+        <br>
+        <a href="https://github.com/smohadjer/signup-form">Code on GitHub</a>
         <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

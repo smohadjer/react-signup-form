@@ -8,10 +8,10 @@
     </head>
     <body>
         <noscript>
-            <p style="color: red;">JavaScript is disabled!</p>
+            <p>JavaScript is disabled!</p>
+            <h1>Signup Form</h1>
             <form class="theme-minimal" method="post" action="api/signup">
                 <fieldset>
-                    <legend>Signup Form</legend>
                     <label for="name">Name:</label>
                     <div>
                         <input type="text" id="name" name="name" pattern="\w{3,30}" placeholder="Enter your first name">
@@ -30,10 +30,10 @@
                 </fieldset>
                 <button>Submit</button>
             </form>
+            <br>
+            <a href="https://github.com/smohadjer/signup-form">Code on GitHub</a>
         </noscript>
         <div id="root"></div>
-        <br>
-        <a href="https://github.com/smohadjer/signup-form">Code on GitHub</a>
         <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

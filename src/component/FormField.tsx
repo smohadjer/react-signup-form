@@ -2,17 +2,9 @@ import { useState } from "react";
 import { PasswordChecker } from './PasswordChecker';
 import { PasswordToggle } from "./PasswordToggle";
 
-interface FieldProps {
-    id: string,
-    label: string,
-    required?: boolean,
-    inputType: string;
-    pattern?: string;
-    placeholder: string;
-    error: string;
-}
+import { Field } from './types';
 
-export function FormField(props: FieldProps) {
+export function FormField(props: Field) {
     const [type, setType] = useState('password');
     const [password, setPassword] = useState('');
 

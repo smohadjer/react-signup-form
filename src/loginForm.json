@@ -1,0 +1,17 @@
+[
+    {
+        "id": "email",
+        "label": "Email",
+        "inputType": "email",
+        "placeholder": "Enter email address",
+        "error": "The entry is not a valid email address.",
+        "required": true
+    },
+    {
+        "id": "password",
+        "label": "Password",
+        "inputType": "password",
+        "placeholder": "Enter password",
+        "required": true
+    }
+]

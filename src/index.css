@@ -8,3 +8,8 @@ hr {
     margin: 2em 0;
 }
 
+/* for better alignment of label and input field in Safari */
+label input[type=checkbox] {
+    vertical-align: top;
+}
+

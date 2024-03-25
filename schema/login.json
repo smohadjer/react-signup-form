@@ -1,19 +1,16 @@
 {
-  "type": "object",
-  "properties": {
-    "login-email": {
-      "type": "string",
-       "format": "email",
-       "minLength": 6,
-       "maxLength": 127
+    "type": "object",
+    "properties": {
+        "login-email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 6,
+            "maxLength": 127
+        },
+        "login-password": {
+            "type": "string"
+        }
     },
-    "login-password": {
-      "type": "string",
-      "pattern": "^([^0-9]*)$",
-      "errorMessage": {
-        "pattern": "Use only letters!"
-     }
-    }
-  },
-  "required": ["login-email", "login-password"]
+    "required": ["login-email", "login-password"],
+    "additionalProperties": false
 }

@@ -1,7 +1,7 @@
 import ajv from './_validator.js';
 import * as fs from 'fs';
 
-const schema = JSON.parse(fs.readFileSync(process.cwd() + '/schema/signup.json', 'utf8'));
+const schema = JSON.parse(fs.readFileSync(process.cwd() + '/schema/login.json', 'utf8'));
 
 export default async (req, res) => {
     console.log(req.body);

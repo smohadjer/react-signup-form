@@ -3,7 +3,12 @@ import show from '../assets/eye-fill.svg';
 import hide from '../assets/eye-slash-fill.svg';
 import './PasswordToggle.css';
 
-export function PasswordToggle ({type, onClick}: {type: string, onClick: MouseEventHandler}) {
+interface Props {
+    type: string;
+    onClick: MouseEventHandler;
+}
+
+export function PasswordToggle ({type, onClick}: Props) {
     return (
         <button
             className="password-toggle"

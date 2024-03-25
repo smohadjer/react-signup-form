@@ -11,7 +11,7 @@ interface Error {
 export function Form({method, action, fields, buttonLabel}: SignupProps) {
     const [disableValidation, setDisableValidation] = useState(false);
 
-    function onSubmitHandler(e: FormEvent) {
+    function submitHandler(e: FormEvent) {
         e.preventDefault();
         const data = new FormData(e.target as HTMLFormElement);
         const json = JSON.stringify(Object.fromEntries(data));
@@ -23,21 +23,21 @@ export function Form({method, action, fields, buttonLabel}: SignupProps) {
               'Content-Type': 'application/json'
             },
             body: json
-          })
-          .then((response) => response.json())
-          .then(json => {
+        })
+        .then((response) => response.json())
+        .then(json => {
             if (json.error) {
-                console.log(json.error);
                 const error: Error[] = json.error
-                const errors = error.map(error => error.instancePath + ': ' + error.message);
+                const errors = error.map(error =>
+                    `${error.instancePath}: ${error.message}`);
                 alert(JSON.stringify(errors));
             } else {
                 alert('Received valid data');
             }
-          });
+        });
     }
 
-    function onClickHandler(e: React.ChangeEvent) {
+    function changeHandler(e: React.ChangeEvent) {
         const checkbox = e.target as HTMLInputElement;
         const checked = checkbox.checked;
         setDisableValidation(checked);
@@ -45,13 +45,23 @@ export function Form({method, action, fields, buttonLabel}: SignupProps) {
 
     return (
         <>
-        <p><label><input type="checkbox" name="disable-validate" onChange={(e) => {onClickHandler(e)}} /> Disable validation in browser to test server-side validation</label></p>
-        <form noValidate={disableValidation ? true : false} className="form-react" method={method} action={action} onSubmit={onSubmitHandler}>
-            <fieldset>
-                {fields.map(item => <FormField key={item.id} {...item} />)}
-            </fieldset>
-            <button type="submit">{buttonLabel}</button>
-        </form>
+            <p><label><input
+                type="checkbox"
+                name="disable-validate"
+                onChange={(e) => {changeHandler(e)}} />
+                Disable Client-side Validation</label>
+            </p>
+            <form
+                noValidate={disableValidation ? true : false}
+                className="form-react"
+                method={method}
+                action={action}
+                onSubmit={submitHandler}>
+                <fieldset>
+                    {fields.map(item => <FormField key={item.id} {...item} />)}
+                </fieldset>
+                <button type="submit">{buttonLabel}</button>
+            </form>
         </>
     )
 }

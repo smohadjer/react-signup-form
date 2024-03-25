@@ -7,12 +7,12 @@ export function FormField(props: Field) {
     const [type, setType] = useState('password');
     const [password, setPassword] = useState('');
 
-    function onInputHandler(e: any) {
+    function inputHandler(e: any) {
         const input = e.target as HTMLInputElement;
         setPassword(input.value);
     }
 
-    function onClickHandler() {
+    function clickHandler() {
         if (type === 'password') {
             setType('text');
         } else {
@@ -20,8 +20,9 @@ export function FormField(props: Field) {
         }
     }
 
-    const flexClass = (props.hasStrengthIndicator && props.hasDisplayToggle) ? ' flex' : '';
-    const passwordWrapperClass = 'password-wrapper' + flexClass;
+    const flexClass = (props.hasStrengthIndicator &&
+        props.hasDisplayToggle) ? 'flex' : '';
+    const passwordWrapperClass = `password-wrapper ${flexClass}`;
 
     return (
         <>
@@ -31,7 +32,8 @@ export function FormField(props: Field) {
             >{props.label}:</label>
             <div>
                 <input
-                    {...(props.inputType === 'password' ? {onInput: onInputHandler} : {})}
+                    {...(props.inputType === 'password' ?
+                        {onInput: inputHandler} : {})}
                     required={props.required}
                     { ...(props.inputType === 'password' ?
                         {type: type} : {type: props.inputType})
@@ -43,8 +45,10 @@ export function FormField(props: Field) {
                 />
                 {props.inputType === 'password' && (
                     <div className={passwordWrapperClass}>
-                        {props.hasStrengthIndicator && <PasswordChecker password={password} />}
-                        {props.hasDisplayToggle && <PasswordToggle type={type} onClick={onClickHandler} />}
+                        {props.hasStrengthIndicator &&
+                            <PasswordChecker password={password} />}
+                        {props.hasDisplayToggle &&
+                            <PasswordToggle type={type} onClick={clickHandler} />}
                     </div>
                 )}
                 <span className="error">{props.error}</span>

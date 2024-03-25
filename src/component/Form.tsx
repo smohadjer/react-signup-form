@@ -9,7 +9,7 @@ interface Error {
 }
 
 export function Form({method, action, fields, buttonLabel}: SignupProps) {
-    const [validate, setValidate] = useState(true);
+    const [disableValidation, setDisableValidation] = useState(false);
 
     function onSubmitHandler(e: FormEvent) {
         e.preventDefault();
@@ -28,23 +28,25 @@ export function Form({method, action, fields, buttonLabel}: SignupProps) {
           .then(json => {
             if (json.error) {
                 console.log(json.error);
-                //const error: Error[] = json.error
-                //const errors = error.map(error => error.instancePath + ': ' + error.message);
-                //alert(JSON.stringify(errors));
+                const error: Error[] = json.error
+                const errors = error.map(error => error.instancePath + ': ' + error.message);
+                alert(JSON.stringify(errors));
             } else {
                 alert('Received valid data');
             }
           });
     }
 
-    function onClickHandler() {
-        setValidate(false);
+    function onClickHandler(e: React.ChangeEvent) {
+        const checkbox = e.target as HTMLInputElement;
+        const checked = checkbox.checked;
+        setDisableValidation(checked);
     }
 
     return (
         <>
-        <p><label><input type="checkbox" name="novalidate" onClick={onClickHandler} /> Disable validation in browser to test server-side validation</label></p>
-        <form noValidate={validate ? false : true} className="form-react" method={method} action={action} onSubmit={onSubmitHandler}>
+        <p><label><input type="checkbox" name="disable-validate" onChange={(e) => {onClickHandler(e)}} /> Disable validation in browser to test server-side validation</label></p>
+        <form noValidate={disableValidation ? true : false} className="form-react" method={method} action={action} onSubmit={onSubmitHandler}>
             <fieldset>
                 {fields.map(item => <FormField key={item.id} {...item} />)}
             </fieldset>

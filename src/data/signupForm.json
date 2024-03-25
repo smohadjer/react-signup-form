@@ -3,9 +3,9 @@
         "id": "signup-name",
         "label": "Name",
         "inputType": "text",
-        "pattern": "^[A-Za-z]{3,30}$",
+        "pattern": "^[A-Za-z]{2,40}$",
         "placeholder": "Enter your first name",
-        "error": "Only letters, 3 to 30 characters long"
+        "error": "Only letters, 2 to 40 characters long"
     },
     {
         "id": "signup-email",
@@ -23,7 +23,7 @@
         "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d])[^\\s]{8,}$",
         "error": "Minimum 8 characters, one uppercase, one lowercase, one number, and one special character",
         "required": true,
-        "hasSecurityIndicator": true,
+        "hasStrengthIndicator": true,
         "hasDisplayToggle": true
     }
 ]

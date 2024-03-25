@@ -20,6 +20,9 @@ export function FormField(props: Field) {
         }
     }
 
+    const flexClass = (props.hasStrengthIndicator && props.hasDisplayToggle) ? ' flex' : '';
+    const passwordWrapperClass = 'password-wrapper' + flexClass;
+
     return (
         <>
             <label
@@ -39,8 +42,8 @@ export function FormField(props: Field) {
                     placeholder={props.placeholder}
                 />
                 {props.inputType === 'password' && (
-                    <div className="password-wrapper">
-                        {props.hasSecurityIndicator && <PasswordChecker password={password} />}
+                    <div className={passwordWrapperClass}>
+                        {props.hasStrengthIndicator && <PasswordChecker password={password} />}
                         {props.hasDisplayToggle && <PasswordToggle type={type} onClick={onClickHandler} />}
                     </div>
                 )}

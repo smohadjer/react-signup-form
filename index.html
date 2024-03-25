@@ -1,34 +1,50 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/src/App.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Signup Form</title>
     </head>
     <body>
         <noscript>
             <p>JavaScript is disabled!</p>
             <h1>Signup Form</h1>
-            <form class="theme-minimal" method="post" action="api/signup">
+            <form method="post" action="api/signup">
                 <fieldset>
-                    <label for="name">Name:</label>
+                    <label for="signup-name">Name:</label>
                     <div>
-                        <input type="text" id="name" name="name" pattern="^[A-Za-z]{3,30}$" placeholder="Enter your first name">
-                        <span class="error">Only letters, 3 to 30 characters long</span>
+                        <input type="text" id="signup-name" name="signup-name" pattern="^[A-Za-z]{2,40}$" placeholder="Enter your first name">
+                        <span class="error">Only letters, 2 to 40 characters long</span>
                     </div>
-                    <label class="required" for="email">Email:</label>
+                    <label class="required" for="signup-email">Email:</label>
                     <div>
-                        <input type="email" id="email" name="email" placeholder="Enter valid email address" required>
+                        <input type="email" id="signup-email" name="signup-email" placeholder="Enter valid email address" required>
                         <span class="error">Not a valid email</span>
                     </div>
-                    <label class="required" for="password">Password:</label>
+                    <label class="required" for="signup-password">Password:</label>
                     <div>
-                        <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])[^\s]{8,}$" id="password" name="password" placeholder="Use a strong password" required>
+                        <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])[^\s]{8,}$" id="signup-password" name="signup-password" placeholder="Use a strong password" required>
                         <span class="error">Minimum 8 characters, one uppercase, one lowercase, one number, and one special character</span>
                     </div>
                 </fieldset>
-                <button>Submit</button>
+                <button type="submit">Submit</button>
+            </form>
+
+            <h1>Login Form</h1>
+            <form method="POST" action="/api/login">
+                <fieldset>
+                    <label class="required" for="login-email">Email:</label>
+                    <div>
+                        <input required="" type="email" id="login-email" name="login-email" placeholder="Enter a valid email">
+                        <span class="error">Not a valid email</span>
+                    </div>
+                    <label class="required" for="login-password">Password:</label>
+                    <div>
+                        <input required="" type="password" id="login-password" name="login-password" placeholder="Enter password">
+                        <span class="error"></span>
+                    </div>
+                </fieldset>
+                <button type="submit">Submit</button>
             </form>
             <p><a href="https://github.com/smohadjer/signup-form">Code on GitHub</a></p>
         </noscript>

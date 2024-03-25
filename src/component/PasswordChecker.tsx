@@ -20,9 +20,9 @@ export function PasswordChecker({password}: {password: string}) {
         return score;
     };
     const score = calculateScore(password, passwordRules);
-    const securityLevel = (score < 3) ? 'low' :
+    const strength = (score < 3) ? 'low' :
         (score < 5) ? 'medium' : 'high';
     return (
-        <div>Security: <span className={securityLevel}>{securityLevel}</span></div>
+        <div>Strength: <span className={strength}>{strength}</span></div>
     )
 }

@@ -1,6 +1,5 @@
-form {
+.form-react {
     padding: 1em;
-    border-radius: 0.25em;
     background: #eee;
     width: 100%;
     box-sizing: border-box;
@@ -40,7 +39,6 @@ form {
         [type="image" i],
         [type="checkbox" i],
         [type="radio" i]) {
-        border-radius: 5px;
         border: 1px #ccc solid;
         padding: 0.25em 0.5em;
         font-size: 16px;
@@ -88,6 +86,17 @@ form {
     button[type=submit] {
         padding: 0.5em 1em;
         font-size: inherit;
-        border-radius: 0.25em;
+        background: #3264c8;
+        color: white;
+        border: 0;
+        cursor: pointer;
+
+        &:focus {
+            outline-color: black;
+        }
+
+        &:hover {
+            background: #194b96;
+        }
     }
 }

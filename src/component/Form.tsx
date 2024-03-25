@@ -3,7 +3,7 @@ import { FormField } from './FormField';
 import { SignupProps } from '../types';
 import './Form.css';
 
-export function Form({method, action, fields}: SignupProps) {
+export function Form({method, action, fields, buttonLabel}: SignupProps) {
     function onSubmitHandler(e: FormEvent) {
         e.preventDefault();
         const data = new FormData(e.target as HTMLFormElement);
@@ -21,16 +21,12 @@ export function Form({method, action, fields}: SignupProps) {
           .then(res => alert(res));
     }
 
-    const formFields = fields.map(item =>
-        <FormField key={item.id} {...item} />
-    )
-
     return (
-        <form method={method} action={action} onSubmit={onSubmitHandler}>
+        <form className="form-react" method={method} action={action} onSubmit={onSubmitHandler}>
             <fieldset>
-                {formFields}
+                {fields.map(item => <FormField key={item.id} {...item} />)}
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit">{buttonLabel}</button>
         </form>
     )
 }

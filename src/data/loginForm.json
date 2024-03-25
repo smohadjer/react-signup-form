@@ -13,7 +13,7 @@
         "inputType": "password",
         "placeholder": "Enter password",
         "required": true,
-        "hasSecurityIndicator": false,
-        "hasDisplayToggle": false
+        "hasStrengthIndicator": false,
+        "hasDisplayToggle": true
     }
 ]

@@ -1,4 +1,4 @@
-import ajv from './_validator.js';
+import { sanitize, ajv } from './_lib.js';
 import * as fs from 'fs';
 
 const schema = JSON.parse(fs.readFileSync(process.cwd() + '/schema/login.json', 'utf8'));
@@ -6,7 +6,7 @@ const schema = JSON.parse(fs.readFileSync(process.cwd() + '/schema/login.json', 
 export default async (req, res) => {
     if (req.method === 'POST') {
         const validator = ajv.compile(schema);
-        const valid = validator(req.body);
+        const valid = validator(sanitize(req.body));
         if (!valid) {
             return res.json({error: validator.errors});
         } else {

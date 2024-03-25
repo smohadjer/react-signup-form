@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "signup-name": {
+        "type": "string",
+        "pattern": "^[A-Za-z]+$",
+        "minLength": 2,
+        "maxLength": 40
+    },
+    "signup-email": {
+      "type": "string",
+       "format": "email",
+       "minLength": 6,
+       "maxLength": 127
+    },
+    "signup-password": {
+        "type": "string",
+        "allOf": [
+            {
+                "minLength": 8
+            },
+            {
+                "pattern": "(?=.*[a-z])[^\\s]"
+            },
+            {
+                "pattern": "(?=.*[A-Z])[^\\s]"
+            },
+            {
+                "pattern": "(?=.*\\d)"
+            },
+            {
+                "pattern": "(?=.*[^a-zA-Z\\d])[^\\s]"
+            }
+        ]
+    }
+  },
+  "required": ["signup-email", "signup-password"],
+  "additionalProperties": false
+}

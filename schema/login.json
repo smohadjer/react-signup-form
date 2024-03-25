@@ -3,7 +3,7 @@
     "properties": {
         "login-email": {
             "type": "string",
-            "format": "email",
+            "pattern": "^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
             "minLength": 6,
             "maxLength": 127
         },

@@ -7,9 +7,9 @@ export default function App() {
     <>
         <h1>Signup Form</h1>
         <Form method="POST" action="/api/signup" fields={signupFields} buttonLabel="Sign Up" />
+        <hr />
         <h1>Login Form</h1>
         <Form method="POST" action="/api/login" fields={loginFields} buttonLabel="Login" />
-        <p><a href="https://github.com/smohadjer/signup-form">Code on GitHub</a></p>
     </>
   )
 }

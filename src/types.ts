@@ -6,8 +6,7 @@ export interface Field {
     pattern?: string;
     placeholder: string;
     error?: string;
-    hasStrengthIndicator
-?: boolean;
+    hasStrengthIndicator?: boolean;
     hasDisplayToggle?: boolean;
 }
 

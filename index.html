@@ -14,24 +14,23 @@
                 <fieldset>
                     <label for="name">Name:</label>
                     <div>
-                        <input type="text" id="name" name="name" pattern="\w{3,30}" placeholder="Enter your first name">
-                        <span class="error">Name should contain only alphanumeric characters and be at least 3 characters and at most 30 characters long.</span>
+                        <input type="text" id="name" name="name" pattern="^[A-Za-z]{3,30}$" placeholder="Enter your first name">
+                        <span class="error">Only letters, 3 to 30 characters long</span>
                     </div>
                     <label class="required" for="email">Email:</label>
                     <div>
                         <input type="email" id="email" name="email" placeholder="Enter valid email address" required>
-                        <span class="error">The entry is not a valid email address.</span>
+                        <span class="error">Not a valid email</span>
                     </div>
                     <label class="required" for="password">Password:</label>
                     <div>
                         <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])[^\s]{8,}$" id="password" name="password" placeholder="Use a strong password" required>
-                        <span class="error">Password should have minimum 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character.</span>
+                        <span class="error">Minimum 8 characters, one uppercase, one lowercase, one number, and one special character</span>
                     </div>
                 </fieldset>
                 <button>Submit</button>
             </form>
-            <br>
-            <a href="https://github.com/smohadjer/signup-form">Code on GitHub</a>
+            <p><a href="https://github.com/smohadjer/signup-form">Code on GitHub</a></p>
         </noscript>
         <div id="root"></div>
         <script type="module" src="/src/main.tsx"></script>

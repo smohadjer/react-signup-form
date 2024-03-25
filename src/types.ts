@@ -6,4 +6,12 @@ export interface Field {
     pattern?: string;
     placeholder: string;
     error?: string;
+    hasSecurityIndicator?: boolean;
+    hasDisplayToggle?: boolean;
+}
+
+export interface SignupProps {
+    method: string;
+    action: string;
+    fields: Field[];
 }

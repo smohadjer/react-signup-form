@@ -1,14 +1,7 @@
 import { FormEvent } from 'react';
 import { FormField } from './FormField';
+import { SignupProps } from '../types';
 import './Form.css';
-
-import { Field } from './types';
-
-interface SignupProps {
-    method: string;
-    action: string;
-    fields: Field[];
-}
 
 export function Form({method, action, fields}: SignupProps) {
     function onSubmitHandler(e: FormEvent) {
@@ -28,12 +21,14 @@ export function Form({method, action, fields}: SignupProps) {
           .then(res => alert(res));
     }
 
+    const formFields = fields.map(item =>
+        <FormField key={item.id} {...item} />
+    )
+
     return (
         <form method={method} action={action} onSubmit={onSubmitHandler}>
             <fieldset>
-                {fields.map(item =>
-                    <FormField key={item.id} {...item} />
-                )}
+                {formFields}
             </fieldset>
             <button type="submit">Submit</button>
         </form>

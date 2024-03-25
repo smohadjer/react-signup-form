@@ -1,6 +1,6 @@
 import { Form } from './component/Form';
-import signupFields from './signupForm.json';
-import loginFields from './loginForm.json';
+import signupFields from './data/signupForm.json';
+import loginFields from './data/loginForm.json';
 
 export default function App() {
   return (

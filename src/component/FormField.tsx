@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { PasswordChecker } from './PasswordChecker';
 import { PasswordToggle } from "./PasswordToggle";
-
-import { Field } from './types';
+import { Field } from '../types';
 
 export function FormField(props: Field) {
     const [type, setType] = useState('password');
@@ -39,11 +38,12 @@ export function FormField(props: Field) {
                     pattern={props.pattern}
                     placeholder={props.placeholder}
                 />
-                {props.inputType === 'password' &&
-                <div className="password-checker">
-                    <PasswordChecker password={password} />
-                    <PasswordToggle type={type} onClick={onClickHandler} />
-                </div>}
+                {props.inputType === 'password' && (
+                    <div className="password-wrapper">
+                        {props.hasSecurityIndicator && <PasswordChecker password={password} />}
+                        {props.hasDisplayToggle && <PasswordToggle type={type} onClick={onClickHandler} />}
+                    </div>
+                )}
                 <span className="error">{props.error}</span>
             </div>
         </>

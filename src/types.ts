@@ -17,3 +17,8 @@ export interface SignupProps {
     fields: Field[];
     buttonLabel: string;
 }
+
+export interface ServerError {
+    instancePath: string;
+    message: string;
+}

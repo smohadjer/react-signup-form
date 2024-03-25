@@ -1,14 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { FormField } from './FormField';
-import { SignupProps } from '../types';
+import { SignupProps, ServerError } from '../types';
 import './Form.css';
 
-interface Error {
-    instancePath: string;
-    message: string;
-}
-
-export function Form({method, action, fields, buttonLabel}: SignupProps) {
+export function Form(props: SignupProps) {
+    const { method, action, fields, buttonLabel } = props;
     const [disableValidation, setDisableValidation] = useState(false);
 
     function submitHandler(e: FormEvent) {
@@ -16,6 +12,7 @@ export function Form({method, action, fields, buttonLabel}: SignupProps) {
         const data = new FormData(e.target as HTMLFormElement);
         const json = JSON.stringify(Object.fromEntries(data));
 
+        // submit form data as json to server
         fetch(action, {
             method: method,
             headers: {
@@ -27,20 +24,19 @@ export function Form({method, action, fields, buttonLabel}: SignupProps) {
         .then((response) => response.json())
         .then(json => {
             if (json.error) {
-                const error: Error[] = json.error
+                const error: ServerError[] = json.error
                 const errors = error.map(error =>
                     `${error.instancePath}: ${error.message}`);
                 alert(JSON.stringify(errors));
             } else {
-                alert('Received valid data');
+                alert('Server received valid data');
             }
         });
     }
 
     function changeHandler(e: React.ChangeEvent) {
         const checkbox = e.target as HTMLInputElement;
-        const checked = checkbox.checked;
-        setDisableValidation(checked);
+        setDisableValidation(checkbox.checked);
     }
 
     return (

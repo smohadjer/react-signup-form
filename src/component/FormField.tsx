@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PasswordChecker } from './PasswordChecker';
+import { StrengthChecker } from './StrengthChecker';
 import { PasswordToggle } from "./PasswordToggle";
 import { Field } from '../types';
 
@@ -7,17 +7,14 @@ export function FormField(props: Field) {
     const [type, setType] = useState('password');
     const [password, setPassword] = useState('');
 
-    function inputHandler(e: any) {
+    function inputHandler(e: React.FormEvent) {
         const input = e.target as HTMLInputElement;
         setPassword(input.value);
     }
 
     function clickHandler() {
-        if (type === 'password') {
-            setType('text');
-        } else {
-            setType('password');
-        }
+        const newType = (type === 'password') ? 'text' : 'password';
+        setType(newType);
     }
 
     const flexClass = (props.hasStrengthIndicator &&
@@ -32,21 +29,25 @@ export function FormField(props: Field) {
             >{props.label}:</label>
             <div>
                 <input
-                    {...(props.inputType === 'password' ?
-                        {onInput: inputHandler} : {})}
                     required={props.required}
-                    { ...(props.inputType === 'password' ?
-                        {type: type} : {type: props.inputType})
-                    }
                     id={props.id}
                     name={props.id}
                     pattern={props.pattern}
                     placeholder={props.placeholder}
+                    {...(props.inputType === 'password' ?
+                        {onInput: (e) => {inputHandler(e)}} : {})
+                    }
+                    {...(props.inputType === 'password' ?
+                        {type: type} : {type: props.inputType})
+                    }
+                    {...(props.inputType === 'password' ?
+                        {autoComplete: 'new-password'} : {})
+                    }
                 />
                 {props.inputType === 'password' && (
                     <div className={passwordWrapperClass}>
                         {props.hasStrengthIndicator &&
-                            <PasswordChecker password={password} />}
+                            <StrengthChecker password={password} />}
                         {props.hasDisplayToggle &&
                             <PasswordToggle type={type} onClick={clickHandler} />}
                     </div>

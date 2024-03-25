@@ -8,7 +8,7 @@ interface Props {
     onClick: MouseEventHandler;
 }
 
-export function PasswordToggle ({type, onClick}: Props) {
+export function PasswordToggle({type, onClick}: Props) {
     return (
         <button
             className="password-toggle"

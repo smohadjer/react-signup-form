@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
-import { FormField } from './FormField';
-import { SignupProps, ServerError } from '../types';
+import { FormField } from '../formField/FormField';
+import { SignupProps, ServerError } from '../../types';
 import './Form.css';
 
 export function Form(props: SignupProps) {
@@ -41,11 +41,13 @@ export function Form(props: SignupProps) {
 
     return (
         <>
-            <p><label><input
-                type="checkbox"
-                name="disable-validate"
-                onChange={(e) => {changeHandler(e)}} />
-                Disable Client-side Validation</label>
+            <p><label>
+                <input
+                    type="checkbox"
+                    name="disable-validate"
+                    onChange={(e) => {changeHandler(e)}}
+                />
+                disable browser validation</label>
             </p>
             <form
                 noValidate={disableValidation ? true : false}

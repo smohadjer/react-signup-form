@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
-import show from '../assets/eye-fill.svg';
-import hide from '../assets/eye-slash-fill.svg';
+import imageUrlShow from './eye-fill.svg';
+import imageUrlHide from './eye-slash-fill.svg';
 import './PasswordToggle.css';
 
 interface Props {
@@ -8,17 +8,22 @@ interface Props {
     onClick: MouseEventHandler;
 }
 
+const title = (type: string) => {
+    return (type === 'password') ? 'Show password' : 'Hide password';
+};
+
 export function PasswordToggle({type, onClick}: Props) {
     return (
         <button
             className="password-toggle"
-            title={type === 'password' ? 'Show password' : 'Hide password'}
+            aria-label={title(type)}
+            title={title(type)}
             type="button"
             onClick={onClick}>
             <img
                 width="25"
-                src={type === 'password' ? show : hide}
-                alt="hide/show password" />
+                src={type === 'password' ? imageUrlShow : imageUrlHide}
+                alt={title(type)} />
         </button>
     )
 }

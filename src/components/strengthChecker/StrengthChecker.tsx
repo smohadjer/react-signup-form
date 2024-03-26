@@ -1,5 +1,6 @@
 import './StrengthChecker.css';
 
+const strengthLevels = ['low', 'medium', 'high'];
 const rules = [
     { regex: /.{8,}/ }, // min 8 letters
     { regex: /[0-9]/ }, // numbers from 0 - 9
@@ -8,9 +9,8 @@ const rules = [
     { regex: /[^A-Za-z0-9]/} // special characters
 ];
 
-// each rule that is met adds one point to the score. Score 1-2 is weak,
-// 3-4 is medium, 5 is strong.
-const calculateScore = (password: string, rules: {regex: RegExp;}[]) => {
+// a pure function that returns a score by giving each passed rule 1 point
+const calculateScore = (password: string, rules: {regex: RegExp;}[]) : number => {
     let score = 0;
     rules.forEach((item) => {
         const isValid = item.regex.test(password);
@@ -23,9 +23,9 @@ const calculateScore = (password: string, rules: {regex: RegExp;}[]) => {
 
 export function StrengthChecker({password}: {password: string}) {
     const score = calculateScore(password, rules);
-    const strength = (score < 3) ? 'low' :
-        (score < 5) ? 'medium' : 'high';
+    const normalizedScore = (score < 3) ? 0 : (score < 5) ? 1 : 2;
+    const strength = strengthLevels[normalizedScore];
     return (
-        <div>Strength: <span className={strength}>{strength}</span></div>
+        <span className={strength}>Strength: {strength}</span>
     )
 }

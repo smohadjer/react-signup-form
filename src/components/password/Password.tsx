@@ -1,7 +1,7 @@
-import { Field } from '../types';
+import { Field } from '../../types';
 import { useState } from "react";
-import { StrengthChecker } from './StrengthChecker';
-import { PasswordToggle } from "./PasswordToggle";
+import { StrengthChecker } from '../strengthChecker/StrengthChecker';
+import { PasswordToggle } from "../passwordToggle/PasswordToggle";
 
 export function Password(props: Field) {
     const [type, setType] = useState('password');

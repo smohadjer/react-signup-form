@@ -1,4 +1,4 @@
-import { Form } from './component/Form';
+import { Form } from './components/form/Form';
 import signupFields from './data/signupForm.json';
 import loginFields from './data/loginForm.json';
 

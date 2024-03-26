@@ -20,4 +20,7 @@ export interface SignupProps {
 export interface ServerError {
     instancePath: string;
     message: string;
+    params: {
+        missingProperty: string;
+    }
 }

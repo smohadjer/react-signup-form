@@ -1,13 +1,13 @@
-import { Field } from '../types';
-import { Password } from './Password';
+import { Field } from '../../types';
+import { Password } from '../password/Password';
 
 export function FormField(props: Field) {
     return (
         <>
             <label
                 {...(props.required ? {className: 'required'} : {})}
-                htmlFor={props.id}
-            >{props.label}:</label>
+                htmlFor={props.id}>{props.label}:
+            </label>
             <div>
                 { props.inputType === 'password'
                     ? <Password {...props} />

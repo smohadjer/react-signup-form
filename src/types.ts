@@ -2,7 +2,7 @@ export interface Field {
     id: string,
     label: string,
     required?: boolean,
-    inputType: string;
+    type: string;
     pattern?: string;
     placeholder: string;
     error?: string;
@@ -10,11 +10,11 @@ export interface Field {
     hasDisplayToggle?: boolean;
 }
 
-export interface SignupProps {
+export interface FormProps {
     method: string;
     action: string;
     fields: Field[];
-    buttonLabel: string;
+    label: string;
 }
 
 export interface ServerError {

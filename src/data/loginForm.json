@@ -2,7 +2,7 @@
     {
         "id": "login-email",
         "label": "Email",
-        "inputType": "email",
+        "type": "email",
         "placeholder": "Enter a valid email",
         "error": "Not a valid email",
         "required": true
@@ -10,7 +10,7 @@
     {
         "id": "login-password",
         "label": "Password",
-        "inputType": "password",
+        "type": "password",
         "placeholder": "Enter password",
         "required": true,
         "hasStrengthIndicator": false,

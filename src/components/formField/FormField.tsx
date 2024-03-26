@@ -9,7 +9,7 @@ export function FormField(props: Field) {
                 htmlFor={props.id}>{props.label}:
             </label>
             <div>
-                { props.inputType === 'password'
+                { props.type === 'password'
                     ? <Password {...props} />
                     : <input
                         required={props.required}
@@ -17,7 +17,7 @@ export function FormField(props: Field) {
                         name={props.id}
                         pattern={props.pattern}
                         placeholder={props.placeholder}
-                        type={props.inputType}
+                        type={props.type}
                     />
                 }
                 <span className="error">{props.error}</span>

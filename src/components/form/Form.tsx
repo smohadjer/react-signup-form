@@ -1,10 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { FormField } from '../formField/FormField';
-import { SignupProps, ServerError } from '../../types';
+import { FormProps, ServerError } from '../../types';
 import './Form.css';
 
-export function Form(props: SignupProps) {
-    const { method, action, fields, buttonLabel } = props;
+export function Form(props: FormProps) {
+    const { method, action, fields, label } = props;
     const [disableValidation, setDisableValidation] = useState(false);
 
     function submitHandler(e: FormEvent) {
@@ -58,7 +58,7 @@ export function Form(props: SignupProps) {
                 <fieldset>
                     {fields.map(item => <FormField key={item.id} {...item} />)}
                 </fieldset>
-                <button type="submit">{buttonLabel}</button>
+                <button type="submit">{label}</button>
             </form>
         </>
     )

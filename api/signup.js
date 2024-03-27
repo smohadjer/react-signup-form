@@ -8,9 +8,20 @@ export default async (req, res) => {
         const validator = ajv.compile(schema);
         const valid = validator(sanitize(req.body));
         if (!valid) {
-            return res.json({error: validator.errors});
+            const errors = validator.errors;
+            errors.map(error => {
+                // for custom error messages
+                if (error.parentSchema) {
+                    const customErrorMessage = error.parentSchema.errorMessage;
+                    if (customErrorMessage) {
+                      error.message = customErrorMessage;
+                    }
+                }
+                return error;
+            });
+            return res.json({error: errors});
         } else {
-            return res.json(`Server received valid data: ${JSON.stringify(req.body)}`);
+            return res.json('Server received valid data');
         }
     }
 }

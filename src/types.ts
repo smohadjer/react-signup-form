@@ -15,6 +15,7 @@ export interface FormProps {
     action: string;
     fields: Field[];
     label: string;
+    disableValidation?: boolean;
 }
 
 export interface ServerError {

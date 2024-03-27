@@ -1,11 +1,10 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { FormField } from '../formField/FormField';
 import { FormProps, ServerError } from '../../types';
 import './Form.css';
 
 export function Form(props: FormProps) {
-    const { method, action, fields, label } = props;
-    const [disableValidation, setDisableValidation] = useState(false);
+    const { method, action, fields, label, disableValidation } = props;
 
     function submitHandler(e: FormEvent) {
         e.preventDefault();
@@ -24,42 +23,32 @@ export function Form(props: FormProps) {
         .then((response) => response.json())
         .then(json => {
             if (json.error) {
-                const error: ServerError[] = json.error
-                const errors = error.map(error =>
-                    `${error.instancePath}: ${error.message}`);
-                alert(JSON.stringify(errors));
+                const errors: ServerError[] = [...json.error];
+                const normalizedErrors = errors.map(error => {
+                    if (error.instancePath.length > 0) {
+                        return `${error.instancePath.substring(1)}: ${error.message}`;
+                    } else {
+                        return `${error.params.missingProperty}: ${error.message}`;
+                    }
+                });
+                alert(JSON.stringify(normalizedErrors));
             } else {
                 alert('Server received valid data');
             }
         });
     }
 
-    function changeHandler(e: React.ChangeEvent) {
-        const checkbox = e.target as HTMLInputElement;
-        setDisableValidation(checkbox.checked);
-    }
-
     return (
-        <>
-            <p><label>
-                <input
-                    type="checkbox"
-                    name="disable-validate"
-                    onChange={(e) => {changeHandler(e)}}
-                />
-                disable browser validation</label>
-            </p>
-            <form
-                noValidate={disableValidation ? true : false}
-                className="form-react"
-                method={method}
-                action={action}
-                onSubmit={submitHandler}>
-                <fieldset>
-                    {fields.map(item => <FormField key={item.id} {...item} />)}
-                </fieldset>
-                <button type="submit">{label}</button>
-            </form>
-        </>
+        <form
+            noValidate={disableValidation ? true : false}
+            className="form-react"
+            method={method}
+            action={action}
+            onSubmit={submitHandler}>
+            <fieldset>
+                {fields.map(item => <FormField key={item.id} {...item} />)}
+            </fieldset>
+            <button type="submit">{label}</button>
+        </form>
     )
 }

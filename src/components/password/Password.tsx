@@ -24,6 +24,8 @@ export function Password(props: Field) {
     return (
         <>
             <input
+                {...(props.errorsObject?.error ?
+                    {className: 'hasError'} : {})}
                 required={props.required}
                 id={props.id}
                 name={props.id}

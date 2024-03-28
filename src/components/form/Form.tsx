@@ -1,10 +1,15 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { FormField } from '../formField/FormField';
-import { FormProps, ServerError } from '../../types';
+import { FormProps, ServerError, Error } from '../../types';
 import './Form.css';
 
 export function Form(props: FormProps) {
     const { method, action, fields, label, disableValidation } = props;
+    const [errors, setErrors] = useState<Error[]>([]);
+
+    function updateErrors(newErrors: Error[]) {
+        setErrors(newErrors);
+    }
 
     function submitHandler(e: FormEvent) {
         e.preventDefault();
@@ -24,14 +29,20 @@ export function Form(props: FormProps) {
         .then(json => {
             if (json.error) {
                 const errors: ServerError[] = [...json.error];
-                const normalizedErrors = errors.map(error => {
+                const normalizedErrors: Error[] = errors.map(error => {
                     if (error.instancePath.length > 0) {
-                        return `${error.instancePath.substring(1)}: ${error.message}`;
+                        return {
+                            id: error.instancePath.substring(1),
+                            error: error.message
+                        }
                     } else {
-                        return `${error.params.missingProperty}: ${error.message}`;
+                        return {
+                            id: error.params.missingProperty,
+                            error: error.message
+                        }
                     }
                 });
-                alert(JSON.stringify(normalizedErrors));
+                updateErrors(normalizedErrors);
             } else {
                 alert('Server received valid data');
             }
@@ -46,7 +57,10 @@ export function Form(props: FormProps) {
             action={action}
             onSubmit={submitHandler}>
             <fieldset>
-                {fields.map(item => <FormField key={item.id} {...item} />)}
+                {fields.map((item, index) => {
+                    const error = errors.find((error) => error.id === item.id);
+                    return <FormField errorsObject={error} key={index} {...item} />
+                })}
             </fieldset>
             <button type="submit">{label}</button>
         </form>

@@ -12,6 +12,8 @@ export function FormField(props: Field) {
                 { props.type === 'password'
                     ? <Password {...props} />
                     : <input
+                        {...(props.errorsObject?.error ?
+                            {className: 'hasError'} : {})}
                         required={props.required}
                         id={props.id}
                         name={props.id}
@@ -20,7 +22,9 @@ export function FormField(props: Field) {
                         type={props.type}
                     />
                 }
-                <span className="error">{props.error}</span>
+                <span className="error">
+                    {props.errorsObject?.error}
+                </span>
             </div>
         </>
     )

@@ -8,6 +8,12 @@ export interface Field {
     error?: string;
     hasStrengthIndicator?: boolean;
     hasDisplayToggle?: boolean;
+    errorsObject?: Error;
+}
+
+export interface Error {
+    id: string;
+    error: string;
 }
 
 export interface FormProps {

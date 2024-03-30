@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { FormField } from '../formField/FormField';
-import { FormProps, ServerError, Error } from '../../types';
+import { FormProps, ServerError, FieldError } from '../../types';
 import './Form.css';
 
 export function Form(props: FormProps) {
     const { method, action, fields, label, disableValidation } = props;
-    const [errors, setErrors] = useState<Error[]>([]);
+    const [errors, setErrors] = useState<FieldError[]>([]);
 
-    function updateErrors(newErrors: Error[]) {
+    function updateErrors(newErrors: FieldError[]) {
         setErrors(newErrors);
     }
 
@@ -29,7 +29,7 @@ export function Form(props: FormProps) {
         .then(json => {
             if (json.error) {
                 const errors: ServerError[] = [...json.error];
-                const normalizedErrors: Error[] = errors.map(error => {
+                const normalizedErrors: FieldError[] = errors.map(error => {
                     if (error.instancePath.length > 0) {
                         return {
                             id: error.instancePath.substring(1),
@@ -59,7 +59,14 @@ export function Form(props: FormProps) {
             <fieldset>
                 {fields.map((item, index) => {
                     const error = errors.find((error) => error.id === item.id);
-                    return <FormField errorsObject={error} key={index} {...item} />
+                    const hasError = error ? true : false;
+
+                    // change default error message to error returned from server
+                    if (error) {
+                        item.error = error.error
+                    }
+
+                    return <FormField hasError={hasError} key={index} {...item} />
                 })}
             </fieldset>
             <button type="submit">{label}</button>

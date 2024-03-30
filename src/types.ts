@@ -1,3 +1,8 @@
+export interface FieldError {
+    id: string;
+    error: string;
+}
+
 export interface Field {
     id: string,
     label: string,
@@ -6,14 +11,9 @@ export interface Field {
     pattern?: string;
     placeholder: string;
     error?: string;
+    hasError? : boolean;
     hasStrengthIndicator?: boolean;
     hasDisplayToggle?: boolean;
-    errorsObject?: Error;
-}
-
-export interface Error {
-    id: string;
-    error: string;
 }
 
 export interface FormProps {

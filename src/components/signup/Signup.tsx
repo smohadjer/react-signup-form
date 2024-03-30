@@ -20,7 +20,7 @@ export function Signup() {
                     type="checkbox"
                     name="disable-validate"
                     onChange={(e) => {changeHandler(e)}}/>
-                    disable browser validation
+                    Disable browser validation (form will be submitted despite errors, but server will validate and return errors)
                 </label>
             </p>
             <Form method="POST" action="/api/signup" fields={fields} label="Sign Up" disableValidation={disableValidation} />

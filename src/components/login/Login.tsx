@@ -20,7 +20,7 @@ export function Login() {
                     type="checkbox"
                     name="disable-validate"
                     onChange={(e) => {changeHandler(e)}}/>
-                    disable browser validation
+                    Disable browser validation (form will be submitted despite errors, but server will validate and return errors)
                 </label>
             </p>
             <Form method="POST" action="/api/login" fields={fields} label="Login" disableValidation={disableValidation} />

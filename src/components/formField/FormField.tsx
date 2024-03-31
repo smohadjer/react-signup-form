@@ -1,7 +1,8 @@
-import { Field } from '../../types';
+import { FieldProps } from '../../types';
 import { Password } from '../password/Password';
+import { Input } from '../input/Input';
 
-export function FormField(props: Field) {
+export function FormField(props: FieldProps) {
     return (
         <>
             <label
@@ -11,16 +12,7 @@ export function FormField(props: Field) {
             <div>
                 { props.type === 'password'
                     ? <Password {...props} />
-                    : <input
-                        {...(props.hasError ?
-                            {className: 'hasError'} : {})}
-                        required={props.required}
-                        id={props.id}
-                        name={props.id}
-                        pattern={props.pattern}
-                        placeholder={props.placeholder}
-                        type={props.type}
-                    />
+                    : <Input {...props} />
                 }
                 <span className="error">{props.error}</span>
             </div>

@@ -51,7 +51,7 @@ export function Form(props: FormProps) {
 
     return (
         <form
-            noValidate={disableValidation ? true : false}
+            noValidate={disableValidation}
             className="form-react"
             method={method}
             action={action}
@@ -59,14 +59,14 @@ export function Form(props: FormProps) {
             <fieldset>
                 {fields.map((item, index) => {
                     const error = errors.find((error) => error.id === item.id);
-                    const hasError = error ? true : false;
 
                     // change default error message to error returned from server
                     if (error) {
-                        item.error = error.error
+                        item.error = error.error;
+                        item.hasError = true;
                     }
 
-                    return <FormField hasError={hasError} key={index} {...item} />
+                    return <FormField key={index} {...item} />
                 })}
             </fieldset>
             <button type="submit">{label}</button>

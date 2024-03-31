@@ -1,9 +1,10 @@
-import { Field } from '../../types';
+import { PasswordProps } from '../../types';
 import { useState } from "react";
+import { Input } from '../input/Input';
 import { StrengthChecker } from '../strengthChecker/StrengthChecker';
 import { PasswordToggle } from "../passwordToggle/PasswordToggle";
 
-export function Password(props: Field) {
+export function Password(props: PasswordProps) {
     const [type, setType] = useState('password');
     const [password, setPassword] = useState('');
 
@@ -23,14 +24,7 @@ export function Password(props: Field) {
 
     return (
         <>
-            <input
-                {...(props.errorsObject?.error ?
-                    {className: 'hasError'} : {})}
-                required={props.required}
-                id={props.id}
-                name={props.id}
-                pattern={props.pattern}
-                placeholder={props.placeholder}
+            <Input {...props}
                 type={type}
                 onInput={(e) => {inputHandler(e)}}
                 autoComplete='new-password'

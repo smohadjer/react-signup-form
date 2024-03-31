@@ -3,23 +3,32 @@ export interface FieldError {
     error: string;
 }
 
-export interface Field {
-    id: string,
+export interface FieldProps extends PasswordProps {
     label: string,
-    required?: boolean,
-    type: string;
-    pattern?: string;
-    placeholder: string;
     error?: string;
-    hasError? : boolean;
+}
+
+export interface PasswordProps extends InputProps {
     hasStrengthIndicator?: boolean;
     hasDisplayToggle?: boolean;
+}
+
+export interface InputProps {
+    id: string;
+    type: string;
+    placeholder: string;
+    hasError: boolean;
+    required?: boolean;
+    pattern?: string;
+    onInput?: React.FormEventHandler;
+    autoComplete?: string;
+
 }
 
 export interface FormProps {
     method: string;
     action: string;
-    fields: Field[];
+    fields: FieldProps[];
     label: string;
     disableValidation?: boolean;
 }

@@ -5,7 +5,8 @@
         "type": "text",
         "pattern": "^[A-Za-z]{2,40}$",
         "placeholder": "Enter your first name",
-        "error": "Only letters, 2 to 40 characters long"
+        "error": "Only letters, 2 to 40 characters long",
+        "hasError": false
     },
     {
         "id": "signup-email",
@@ -13,7 +14,8 @@
         "type": "email",
         "placeholder": "Enter a valid email",
         "error": "Not a valid email",
-        "required": true
+        "required": true,
+        "hasError": false
     },
     {
         "id": "signup-password",
@@ -24,6 +26,7 @@
         "error": "Minimum 8 characters, one uppercase, one lowercase, one number, and one special character",
         "required": true,
         "hasStrengthIndicator": true,
-        "hasDisplayToggle": true
+        "hasDisplayToggle": true,
+        "hasError": false
     }
 ]

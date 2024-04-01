@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { FormField } from '../formField/FormField';
+import { normalizeErrors } from '../../utils/normalizeErrors';
 import { FormProps, ServerError, FieldError } from '../../types';
 import './Form.css';
 
@@ -29,20 +30,7 @@ export function Form(props: FormProps) {
         .then(json => {
             if (json.error) {
                 const errors: ServerError[] = [...json.error];
-                const normalizedErrors: FieldError[] = errors.map(error => {
-                    if (error.instancePath.length > 0) {
-                        return {
-                            id: error.instancePath.substring(1),
-                            error: error.message
-                        }
-                    } else {
-                        return {
-                            id: error.params.missingProperty,
-                            error: error.message
-                        }
-                    }
-                });
-                updateErrors(normalizedErrors);
+                updateErrors(normalizeErrors(errors));
             } else {
                 alert('Server received valid data');
             }
